@@ -3,7 +3,7 @@
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
-export function ShowCourseData() {
+export default function ShowCourseData() {
 
   const pathname = usePathname()
 
@@ -21,4 +21,3 @@ export function ShowCourseData() {
 
 
 
-export default ShowCourseData;
