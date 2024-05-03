@@ -50,6 +50,8 @@ export function LoginCard() {
             }
 
             let backend_url = process.env.BACKEND_URL;
+
+            console.log(backend_url)
             const resp = await fetch(`${backend_url}/auth/login`, {
 
                 method: "POST",

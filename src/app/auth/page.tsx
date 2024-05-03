@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { LoginCard } from "../ui/login";
 
 export default function Home() {
