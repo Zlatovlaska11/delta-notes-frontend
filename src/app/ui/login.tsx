@@ -37,6 +37,8 @@ export function LoginCard() {
 
         console.log(formData.get("username"));
         console.log(formData.get("pass"));
+        let backend_url = process.env.BACKEND_URL;
+        console.log(backend_url)
 
         const username = formData.get("username");
         const password = formData.get("password");
@@ -49,9 +51,7 @@ export function LoginCard() {
 
             }
 
-            let backend_url = process.env.BACKEND_URL;
 
-            console.log(backend_url)
             const resp = await fetch(`${backend_url}/auth/login`, {
 
                 method: "POST",
@@ -63,7 +63,7 @@ export function LoginCard() {
 
                 const token = resp.text;
 
-                document.cookie =token.toString();
+                document.cookie = token.toString();
                 console.log(resp.body)
             }
         }
