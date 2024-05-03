@@ -25,6 +25,7 @@ interface creds {
     mail?: String
 
 }
+import axios from "axios"
 
 export function LoginCard() {
 
@@ -46,10 +47,12 @@ export function LoginCard() {
         }
         console.log(backend_url)
 
-        const username = formData.get("username");
-        const password = formData.get("password");
+        let username = formData.get("username");
+        let password = formData.get("pass");
 
         if (username != null && password != null) {
+
+            console.log("this is working")
 
             let creds: creds = {
                 username: username.toString(),
@@ -57,21 +60,31 @@ export function LoginCard() {
 
             }
 
+            const resp = await axios.post("https://zlatovlas-delta-notes.shuttleapp.rs/auth/login", {
 
-            const resp = await fetch(`${backend_url}/auth/login`, {
+                "username": creds.username,
+                "password": creds.password,
+                
 
-                method: "POST",
-                body: JSON.stringify(creds)
+            });
 
-            })
+            console.log(resp.request)
+
 
             if (resp.status == 200) {
 
-                const token = resp.text;
+                console.log(resp.data)
 
-                document.cookie = token.toString();
-                console.log(resp.body)
             }
+            else{
+
+                console.log("bruh")
+            }
+
+        }
+        else {
+            console.log("tf")
+
         }
 
 
