@@ -4,7 +4,6 @@ import { HoverEffect } from "@/components/ui/card-hover-effect";
 export function Home() {
 
 
-    let items = ["czech", "vypocetka", "chemie"]
 
     return (
         <>
