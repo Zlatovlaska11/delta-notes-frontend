@@ -1,7 +1,7 @@
 
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 
-export function Home() {
+export default function HomePage() {
 
 
 
@@ -59,4 +59,3 @@ const Projects = [
     },
 ];
 
-export default Home;
