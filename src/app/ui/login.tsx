@@ -68,7 +68,7 @@ export function LoginCard() {
 
             });
 
-            console.log(resp.request)
+            console.log(resp.request.await)
 
 
             if (resp.status == 200) {
