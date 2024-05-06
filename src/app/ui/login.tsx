@@ -85,6 +85,8 @@ export function LoginCard() {
 
         }
 
+    }
+
 
         async function onSubmitReg(event: FormEvent<HTMLFormElement>) {
 
@@ -215,4 +217,4 @@ export function LoginCard() {
     }
 
 
-}
+
