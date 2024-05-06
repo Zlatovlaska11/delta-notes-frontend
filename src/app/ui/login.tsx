@@ -60,27 +60,25 @@ export function LoginCard() {
                 password: password.toString()
 
             }
+            const router = useRouter();
 
             const resp = await axios.post("https://zlatovlas-delta-notes.shuttleapp.rs/auth/login", {
 
                 "username": creds.username,
                 "password": creds.password,
-                
 
-            });
 
-            const router = useRouter();
+            }).then(response => {
+                console.log('Status:', response.status);
+                if (response.status == 200){
+                    
+                     window.location.href = '/home'; 
 
-            if (resp.status == 200) {
+                }
+                // You can access other response data as well, such as response.data
+            })
 
-                console.log("got here")
-                router.push("/home")
-                
-            }
-            else{
 
-                console.log("bruh")
-            }
 
         }
         else {
