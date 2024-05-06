@@ -69,11 +69,12 @@ export function LoginCard() {
 
             });
 
-            let router = useRouter();
+            const router = useRouter();
 
             if (resp.status == 200) {
 
-                router.push("/home");
+                console.log("got here")
+                router.push("/home")
                 
             }
             else{
