@@ -60,7 +60,6 @@ export function LoginCard() {
                 password: password.toString()
 
             }
-            const router = useRouter();
 
             const resp = await axios.post("https://zlatovlas-delta-notes.shuttleapp.rs/auth/login", {
 
