@@ -26,6 +26,7 @@ interface creds {
 
 }
 import axios from "axios"
+import { useRouter } from "next/navigation"
 
 export function LoginCard() {
 
@@ -68,13 +69,12 @@ export function LoginCard() {
 
             });
 
-            console.log(resp.request.await)
-
+            let router = useRouter();
 
             if (resp.status == 200) {
 
-                console.log(resp.data)
-
+                router.push("/home");
+                
             }
             else{
 
