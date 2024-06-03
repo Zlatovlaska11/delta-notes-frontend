@@ -1,52 +1,55 @@
 "use client"
 
-import { CourseCard } from '@/components/ui/courses';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
+import { useParams, usePathname } from 'next/navigation'
+import CourseGrid from "@/components/ui/courseGrid";
+import Head from "next/head";
+import axios, { AxiosResponse } from 'axios';
+import { useEffect, useState } from 'react';
+
+
+interface Course {
+    title: string;
+    description: string;
+    url: string;
+}
 export default function ShowCourseData() {
 
-    const pathname = usePathname()
 
+    const [courses, setCourses] = useState<Course[]>([]);
+    const pathParam = usePathname();
+    const param = pathParam[pathParam.length - 1];
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.post<Course[]>(`http://localhost:8080/list`, { id: param });
+                if (response.status === 200) {
+                    setCourses(response.data);
+                } else {
+                    console.error('Failed to fetch data');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
 
-
-    // get course info and file storage and finish backned endpoint for login/tegister and courseInfo
+        fetchData();
+    }, [param]);
 
     return (
-        <>
-            <div className='h-5/6 w-full flex flex-row rounded-3xl justify-center align-middle'>
-                <div className='bg-red-800 h-52 w-73 '></div>
-                <CourseCard items={items}>
-                </CourseCard>
-            </div>
-        </>
+        <div>
+            <Head>
+                <title>Course Grid</title>
+                <meta name="description" content="Course Grid using TailwindCSS and Next.js" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
+            <main className="container mx-auto p-4">
+                <h1 className="text-4xl font-bold text-center mb-8">Courses</h1>
+                <CourseGrid courses={courses}/>
+            </main>
+        </div>
     );
-
 }
-
-let items = [
-    {
-        title: "test",
-        route: "/home/test/0"
-    },
-
-    {
-        title: "test",
-        route: "/home/test/0"
-    },
-
-
-    {
-        title: "test",
-        route: "/home/test/0"
-    },
-
-    {
-        title: "test",
-        route: "/home/test/0"
-    },
-
-]
-
 

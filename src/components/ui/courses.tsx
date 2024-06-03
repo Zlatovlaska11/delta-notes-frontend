@@ -1,34 +1,32 @@
-import { Card, CardDescription, CardTitle } from "./card-hover-effect";
-import Link from 'next/link'
-export const CourseCard = ({
-    items,
-}: {
-    items: {
-        title: string;
-        route: string;
-    }[];
-    className?: string;
-}) => {
+// components/CourseCard.tsx
 
-    return (
+import Link from 'next/link';
 
-        <div className=
-                "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10"
-        >
-            {items.map(item => (
-                <Link
-                    className="relative group  block p-2 h-full w-full"
-                    href={`${item.route}`}
-                >
-                    <Card>
-                        <CardTitle>{item.title}</CardTitle>
-                    </Card>
-                </Link>
-            ))}
-
-        </div>
-
-
-    )
-
+interface Course {
+    title: string;
+    description: string;
+    url: string;
 }
+
+interface CourseCardProps {
+    course: Course;
+}
+
+const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+    return (
+        <div className="border rounded-lg shadow-lg overflow-hidden">
+            <div className="p-4">
+                <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
+                <p className="text-gray-600">{course.description}</p>
+            </div>
+            <div className="p-4 bg-gray-100 text-right">
+                <Link href={course.url} legacyBehavior>
+                    <a className="text-blue-500 hover:underline">Open Course</a>
+                </Link>
+            </div>
+        </div>
+    );
+};
+
+export default CourseCard;
+
