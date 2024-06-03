@@ -23,7 +23,15 @@ export default function ShowCourseData() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post<Course[]>(`http://localhost:8080/list`, { id: param });
+
+                let backend_url = process.env.BACKEND_URL;
+
+                if (backend_url == undefined) {
+
+                    backend_url = "https://zlatovlas-delta-notes.shuttleapp.rs"
+
+                }
+                const response = await axios.post<Course[]>(`${backend_url}/list`, { id: param });
                 if (response.status === 200) {
                     setCourses(response.data);
                 } else {

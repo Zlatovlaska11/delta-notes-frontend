@@ -3,6 +3,7 @@
 
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { NavBar } from "@/components/ui/navbar";
+import Sidebar from "@/components/ui/sidebar";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 
@@ -65,7 +66,6 @@ export default function HomePage() {
 
     return (
         <div>
-            <NavBar />
             <Head>
                 <title>Course Selection</title>
                 <meta name="description" content="Course selection using TailwindCSS and Next.js" />
