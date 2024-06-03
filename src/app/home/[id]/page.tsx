@@ -31,7 +31,7 @@ export default function ShowCourseData() {
                     backend_url = "https://zlatovlas-delta-notes.shuttleapp.rs"
 
                 }
-                const response = await axios.post<Course[]>(`${backend_url}/list`, { id: param });
+                const response = await axios.post<Course[]>('http://127.0.0.1:8080/list', { id: param });
                 if (response.status === 200) {
                     setCourses(response.data);
                 } else {
