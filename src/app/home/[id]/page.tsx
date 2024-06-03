@@ -47,7 +47,7 @@ export default function ShowCourseData() {
 
             <main className="container mx-auto p-4">
                 <h1 className="text-4xl font-bold text-center mb-8">Courses</h1>
-                <CourseGrid courses={courses}/>
+                <CourseGrid courses={courses} />
             </main>
         </div>
     );

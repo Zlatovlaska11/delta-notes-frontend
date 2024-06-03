@@ -1,23 +1,84 @@
 
+'use client'
+
 import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { NavBar } from "@/components/ui/navbar";
+import Head from "next/head";
+import { useRouter } from "next/navigation";
+
+interface Course {
+    title: string;
+    description: string;
+    id: number;
+}
+
+interface CourseCardProps {
+    course: Course;
+}
+
+const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+    const router = useRouter();
+
+    const handleCardClick = () => {
+        router.push(`/home/${course.id}`);
+    };
+
+    return (
+        <div
+            className="border rounded-lg shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between h-64"
+            onClick={handleCardClick}
+        >
+            <div className="p-4 flex-grow">
+                <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
+                <p className="text-gray-600">{course.description}</p>
+            </div>
+            <div className="p-4 bg-background text-right">
+                <span className="text-blue-500 hover:underline">Go to {course.title}</span>
+            </div>
+        </div>
+    );
+};
+
+interface Course {
+    title: string;
+    description: string;
+    id: number;
+}
+
+interface CourseGridProps {
+    courses: Course[];
+}
+
+const CourseGrid: React.FC<CourseGridProps> = ({ courses }) => {
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
+            {courses.map((course) => (
+                <CourseCard key={course.id} course={course} />
+            ))}
+        </div>);
+};
+
 
 export default function HomePage() {
 
 
 
     return (
-        <>
-            <h1 className="flex flex-row justify-center items-center  h-20 "> {"Kurzy"} </h1>
+        <div>
+            <NavBar />
+            <Head>
+                <title>Course Selection</title>
+                <meta name="description" content="Course selection using TailwindCSS and Next.js" />
+            </Head>
 
-            <div className="flex flex-row justify-center items-center h-5/6">
-
-                <HoverEffect items={Projects} />
-
-            </div>
-
-        </>
+            <main className="flex flex-col items-center justify-center min-h-screen p-4">
+                <h1 className="text-4xl font-bold text-center mb-8">Select a Course</h1>
+                <div className="w-full max-w-6xl">
+                    <CourseGrid courses={Projects} />
+                </div>
+            </main>
+        </div>
     );
-
 }
 
 const Projects = [
