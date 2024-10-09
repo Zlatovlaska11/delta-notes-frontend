@@ -151,8 +151,9 @@ export function LoginCard() {
         }
 
         return (
-            <>
-                <Tabs defaultValue="login" className="w-[400px]">
+          <>
+            <div className="flex flex-wrap">
+                <Tabs defaultValue="login" className="w-full">
                     <form onSubmit={onSubmitLogin}>
                         <TabsList className="grid w-full grid-cols-2">
                             <TabsTrigger value="login">Login</TabsTrigger>
@@ -212,6 +213,7 @@ export function LoginCard() {
                         </TabsContent>
                     </form>
                 </Tabs>
+            </div>
             </>
         )
     }
